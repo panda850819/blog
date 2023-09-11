@@ -1,7 +1,7 @@
-# Trigger the workflow on push or pull request
 on: [push, pull_request]
 
 name: Build and deploy GH Pages
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -9,12 +9,24 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3.0.0
-      - name: build_and_deploy
-        uses: shalzz/zola-deploy-action@v0.17.2
+      
+      - name: Set up Zola Environment
         env:
-          # Target branch
-          PAGES_BRANCH: gh-pages
-          # Provide personal access token
+          ZOLA_VERSION: 0.17.2 # 指定你的 Zola 版本
+        run: |
+          curl -sSL -o zola.tar.gz https://github.com/getzola/zola/releases/download/v$ZOLA_VERSION/zola-v$ZOLA_VERSION-x86_64-unknown-linux-gnu.tar.gz
+          tar -xzf zola.tar.gz
+          chmod +x zola
+          mv zola /usr/local/bin/
+          zola --version
+      
+      - name: Build Zola Blog
+        run: zola build
+      
+      - name: Create Environment File
+        env:
           TOKEN: ${{ secrets.TOKEN }}
-          # Or if publishing to the same repo, use the automatic token
-          #TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "TOKEN=$TOKEN" >> $GITHUB_ENV
+      
+      - name: Deploy to GitHub Pages
+        uses: shalzz/zola-deploy-action@v0.17.2
