@@ -1,30 +1,50 @@
 {
   "home": {
-    "name": "ByteKai",
-    "title": "Software Engineer & Curious Tinkerer",
-    "introduction": "I’m constantly learning and evolving. I love diving into new ideas and finding creative ways to solve problems.",
+    "name": "熊貓隨口說",
+    "title": "2018 接觸區塊鏈，過程中點各式各樣的技能點做過 Marketing/Operations 的一個會寫點程式的資管生",
+    "introduction": "",
     "sections": {
       "blog": {
-        "title": "Writing",
-        "viewAllText": "View all posts"
+        "title": "部落格",
+        "viewAllText": "查看所有文章"
       },
       "projects": {
-        "title": "Projects",
-        "viewAllText": "View all projects"
+        "title": "專案",
+        "viewAllText": "查看所有專案"
       },
       "experience": {
-        "title": "Experience",
-        "viewAllText": "View full résumé"
+        "title": "經歷",
+        "viewAllText": "查看完整履歷"
       }
     },
     "socialLinks": [
       {
         "platform": "GitHub",
-        "url": "https://github.com/bytekai"
+        "url": "https://github.com/panda850819"
       },
       {
         "platform": "Twitter",
-        "url": "https://x.com/byteekai"
+        "url": "https://x.com/pandazeng1"
+      },
+      {
+        "platform": "LinkedIn",
+        "url": "https://www.linkedin.com/in/wei-chieh-tseng-369303161/"
+      },
+      {
+        "platform": "Telegram",
+        "url": "https://t.me/pdzeng_talk"
+      },
+      {
+        "platform": "Medium",
+        "url": "https://medium.com/@kiss851990"
+      },
+      {
+        "platform": "Substack",
+        "url": "https://pdzeng.substack.com/"
+      },
+      {
+        "platform": "Email",
+        "url": "mailto:panda@walkincat.org"
       }
     ]
   }

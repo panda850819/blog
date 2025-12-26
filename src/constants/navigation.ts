@@ -2,19 +2,23 @@ import type { Navigation } from "../types/navigation";
 
 export const NAVIGATION: Navigation = [
     {
-        name: "Home",
+        name: "首頁",
         path: "/",
     },
     {
-        name: "Blog",
+        name: "部落格",
         path: "/blog",
     },
     {
-        name: "Notes",
+        name: "筆記",
         path: "/notes",
     },
     {
-        name: "Bookmarks",
+        name: "書籤",
         path: "/bookmarks",
+    },
+    {
+        name: "電子報",
+        path: "https://pdzeng.substack.com/",
     },
 ]; 

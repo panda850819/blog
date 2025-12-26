@@ -21,11 +21,13 @@ const experience = defineCollection({
     }),
     schema: z.object({
         title: z.string(),
-        logo: z.string(),
+        company: z.string(),
+        logo: z.string().optional(),
         description: z.string(),
         startDate: z.coerce.date(),
         endDate: z.coerce.date().optional(),
         current: z.boolean().optional().default(false),
+        featured: z.boolean().optional().default(false),
     })
 });
 

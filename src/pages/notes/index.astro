@@ -18,9 +18,9 @@ const categories = [...new Set(notes.map((note: Note) => note.data.category))];
 const sortedNotes = notes.sort((a: Note, b: Note) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
 ---
 
-<BaseLayout title="Notes" description="Short-form thoughts and learnings">
+<BaseLayout title="筆記" description="簡短的想法與學習紀錄">
   <Container>
-    <BaseHero title="Notes" description="Short-form thoughts and learnings" />
+    <BaseHero title="筆記" description="簡短的想法與學習紀錄" />
 
     <Categories categories={categories} currentPath={Astro.url.pathname} basePath="notes" />
 

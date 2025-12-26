@@ -15,9 +15,9 @@ const site = siteConfig.data;
 
 const formatDate = (date: Date | undefined) => {
   if (!date) return "";
-  return date.toLocaleDateString("en-US", {
+  return date.toLocaleDateString("zh-TW", {
+    year: "numeric",
     month: "short",
-    day: "numeric",
   });
 };
 
@@ -33,8 +33,11 @@ const latestPosts = posts
 
 const experiences = await getCollection("experience");
 const sortedExperiences = experiences.sort(
-  (a: CollectionEntry<"experience">, b: CollectionEntry<"experience">) =>
-    b.data.startDate.getTime() - a.data.startDate.getTime()
+  (a: CollectionEntry<"experience">, b: CollectionEntry<"experience">) => {
+    if (a.data.current && !b.data.current) return -1;
+    if (!a.data.current && b.data.current) return 1;
+    return b.data.startDate.getTime() - a.data.startDate.getTime();
+  }
 );
 
 const projects = await getCollection("projects");
@@ -117,15 +120,12 @@ const featuredProjects = projects.filter((project: CollectionEntry<"projects">) 
       </div>
       <div class="content-list">
         {
-          sortedExperiences.slice(0, 2).map((exp) => (
+          sortedExperiences.filter((exp) => exp.data.featured).slice(0, 2).map((exp) => (
             <article>
               <div class="title-row">
-                <div class="company-info">
-                  <img src={exp.data.logo} alt="" class="company-logo" />
-                  <span>{exp.data.title}</span>
-                </div>
+                <span>{exp.data.title} @ {exp.data.company}</span>
                 <time>
-                  {formatDate(exp.data.startDate)} - {exp.data.current ? "Present" : formatDate(exp.data.endDate)}
+                  {formatDate(exp.data.startDate)} - {exp.data.current ? "至今" : formatDate(exp.data.endDate)}
                 </time>
               </div>
               <p class="muted-text">{exp.data.description}</p>
@@ -172,18 +172,6 @@ const featuredProjects = projects.filter((project: CollectionEntry<"projects">) 
     align-items: baseline;
     gap: 1rem;
     font-size: var(--text-sm);
-  }
-
-  .company-info {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .company-logo {
-    width: 1.5rem;
-    height: 1.5rem;
-    object-fit: contain;
   }
 
   time {

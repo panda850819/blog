@@ -1,60 +1,69 @@
-# Free Minimal Astro Portfolio
+# 極簡 Astro 個人網站
 
-A modern, minimalist portfolio website built with Astro and deployed on Cloudflare Pages. Features a collection of writings, projects, and professional experiences.
+一個使用 Astro 建構並部署在 Cloudflare Pages 上的現代化極簡個人網站。展示文章、專案和專業經歷。
 
 ![alt text](image.png)
 
-## Overview
+## 概述
 
-This is a personal portfolio website for ByteKai, a Software Engineer and Curious Tinkerer. The site showcases blog posts, technical notes, project work, and professional experience in a clean, fast-loading format.
+這是熊貓隨口說的個人網站，一位軟體工程師和好奇的修補匠。網站以簡潔、快速載入的格式展示部落格文章、技術筆記、專案作品和專業經歷。
 
+## 功能特色
 
+- 🚀 使用 [Astro](https://astro.build) v5.1 建構
+- ⚡️ 部署於 [Cloudflare Pages](https://pages.cloudflare.com)
+- 📝 內容區塊：
+  - 部落格文章
+  - 技術筆記
+  - 專案展示
+  - 專業經歷
+  - 精選書籤
+- 🎨 Chiri 極簡風格設計：
+  - Inter 字體（400/500/600 字重）
+  - Roboto Mono 等寬字體
+  - 柔和黑色配色與藍色光暈效果
+- 🌐 社群媒體整合
+- 📱 完全響應式設計
 
-## Features
+## 技術架構
 
-- 🚀 Built with [Astro](https://astro.build) v5.1
-- ⚡️ Deployed on [Cloudflare Pages](https://pages.cloudflare.com)
-- 📝 Content sections:
-  - Blog posts
-  - Technical notes
-  - Project showcase
-  - Professional experience
-  - Curated bookmarks
-- 🎨 Clean typography with:
-  - Inter
-  - Roboto Mono
-  - Source Sans Pro
-- 🌐 Social presence integration
-- 📱 Fully responsive design
-
-## Tech Stack
-
-- **Framework**: [Astro](https://astro.build) 5.1.2
-- **Deployment**: Cloudflare Pages
-- **Fonts**: 
+- **框架**: [Astro](https://astro.build) 5.1.2
+- **部署**: Cloudflare Pages
+- **字體**: 
   - @fontsource/inter
   - @fontsource/roboto-mono
   - @fontsource/source-sans-pro
 
-## Development
+## 使用教學
 
-### Prerequisites
+📖 **完整的使用教學請參考 [TUTORIAL.md](TUTORIAL.md)**
 
-- Node.js (Latest LTS version recommended)
-- npm or pnpm
+教學內容包含：
+- 如何新增部落格文章、筆記、書籤
+- 如何新增專案和工作經歷
+- 如何修改導航欄和首頁資訊
+- 部落格 vs 筆記的差異說明
+- 常見問題解答
 
-### Local Development
+## 開發
 
-1. Clone the repository
-2. Run `pnpm install` to install dependencies
-3. Run `pnpm dev` to start the development server
-4. Open your browser and navigate to `http://localhost:4321` to view the site
+### 前置需求
 
-## License
+- Node.js (建議使用最新 LTS 版本)
+- npm 或 pnpm
 
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+### 本地開發
 
-## Acknowledgments
+1. 複製此儲存庫
+2. 執行 `pnpm install` 安裝相依套件
+3. 執行 `pnpm dev` 啟動開發伺服器
+4. 開啟瀏覽器並前往 `http://localhost:4321` 查看網站
+
+## 授權
+
+本專案採用 Apache License 2.0 授權 - 詳見 [LICENSE](LICENSE) 檔案。
+
+## 致謝
 
 - [Astro](https://astro.build)
 - [Fontsource](https://fontsource.org)
