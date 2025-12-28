@@ -3,6 +3,7 @@ title: "旅遊日誌與心情紀錄"
 description: "澳門、香港、深圳、廣州的旅遊經歷，以及工作上推行 AI 工具整合的心得。"
 publishedAt: 2025-09-11
 draft: false
+tags: ["旅遊", "工作", "AI"]
 ---
 
 ## 旅遊經歷

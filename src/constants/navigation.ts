@@ -10,6 +10,10 @@ export const NAVIGATION: Navigation = [
         path: "/blog",
     },
     {
+        name: "存檔",
+        path: "/blog/archive",
+    },
+    {
         name: "筆記",
         path: "/notes",
     },

@@ -1,0 +1,100 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../components/layout/BaseLayout.astro";
+import BaseHero from "../../../components/shared/BaseHero.astro";
+import Container from "../../../components/ui/Container.astro";
+
+const posts = await getCollection("blog", ({ data }) => {
+  return import.meta.env.PROD ? !data.draft : true;
+});
+
+// 按年份分組
+const postsByYear = new Map<number, number>();
+posts.forEach((post) => {
+  const year = post.data.publishedAt.getFullYear();
+  postsByYear.set(year, (postsByYear.get(year) || 0) + 1);
+});
+
+// 按年份排序（新到舊）
+const sortedYears = [...postsByYear.entries()].sort((a, b) => b[0] - a[0]);
+---
+
+<BaseLayout title="文章存檔" description="依年份瀏覽文章">
+  <Container>
+    <BaseHero title="文章存檔" description="依年份瀏覽文章" />
+    <div class="blog-nav">
+      <a href="/blog">全部文章</a>
+      <a href="/blog/tags">標籤</a>
+      <a href="/blog/archive">存檔</a>
+    </div>
+    <div class="archive-list">
+      {
+        sortedYears.map(([year, count]) => (
+          <a href={`/blog/archive/${year}`} class="year-card">
+            <span class="year">{year}</span>
+            <span class="count">{count} 篇文章</span>
+          </a>
+        ))
+      }
+    </div>
+  </Container>
+</BaseLayout>
+
+<style>
+  .archive-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .year-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: all 0.2s;
+  }
+
+  .year-card:hover {
+    border-color: var(--link-color);
+    color: var(--link-color);
+  }
+
+  .year {
+    font-size: var(--text-xl);
+    font-weight: 600;
+  }
+
+  .count {
+    font-size: var(--text-sm);
+    opacity: 0.6;
+  }
+
+  .blog-nav {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .blog-nav a {
+    color: var(--muted-text-color);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    transition: color 0.2s;
+  }
+
+  .blog-nav a:hover {
+    color: var(--link-color);
+  }
+
+  .blog-nav a[href="/blog/archive"] {
+    color: var(--text-color);
+    font-weight: 500;
+  }
+</style>

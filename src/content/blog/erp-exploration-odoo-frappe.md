@@ -3,6 +3,7 @@ title: "ERP 探索日：Odoo、Frappe 與我的疲倦狀態"
 description: "花了一整天研究 ERP 系統，特別是 Odoo 與 Frappe 兩個開源平台，也聊聊當天的身心狀態。"
 publishedAt: 2025-09-23
 draft: false
+tags: ["工具", "ERP", "工作"]
 ---
 
 花了整天時間研究市場上的 ERP 系統，特別是 Odoo 與 Frappe 兩個平台。

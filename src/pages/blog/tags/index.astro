@@ -1,0 +1,104 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../components/layout/BaseLayout.astro";
+import BaseHero from "../../../components/shared/BaseHero.astro";
+import Container from "../../../components/ui/Container.astro";
+
+const posts = await getCollection("blog", ({ data }) => {
+  return import.meta.env.PROD ? !data.draft : true;
+});
+
+// 收集所有 tags 並計算數量
+const tagCounts = new Map<string, number>();
+posts.forEach((post) => {
+  post.data.tags?.forEach((tag) => {
+    tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+  });
+});
+
+// 按數量排序
+const sortedTags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1]);
+---
+
+<BaseLayout title="標籤" description="依標籤瀏覽文章">
+  <Container>
+    <BaseHero title="標籤" description="依標籤瀏覽文章" />
+    <div class="blog-nav">
+      <a href="/blog">全部文章</a>
+      <a href="/blog/tags">標籤</a>
+      <a href="/blog/archive">存檔</a>
+    </div>
+    <div class="tags-grid">
+      {
+        sortedTags.map(([tag, count]) => (
+          <a href={`/blog/tags/${encodeURIComponent(tag)}`} class="tag-card">
+            <span class="tag-name">{tag}</span>
+            <span class="tag-count">{count}</span>
+          </a>
+        ))
+      }
+    </div>
+    {sortedTags.length === 0 && <p class="muted-text">尚無標籤</p>}
+  </Container>
+</BaseLayout>
+
+<style>
+  .tags-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .tag-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: all 0.2s;
+  }
+
+  .tag-card:hover {
+    border-color: var(--link-color);
+    color: var(--link-color);
+  }
+
+  .tag-name {
+    font-size: var(--text-base);
+  }
+
+  .tag-count {
+    font-size: var(--text-xs);
+    opacity: 0.6;
+    background: var(--border-color);
+    padding: 0.125rem 0.5rem;
+    border-radius: 1rem;
+  }
+
+  .blog-nav {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .blog-nav a {
+    color: var(--muted-text-color);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    transition: color 0.2s;
+  }
+
+  .blog-nav a:hover {
+    color: var(--link-color);
+  }
+
+  .blog-nav a[href="/blog/tags"] {
+    color: var(--text-color);
+    font-weight: 500;
+  }
+</style>

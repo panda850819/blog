@@ -3,6 +3,7 @@ title: "SocialFi 大爆發？你不可不知道的 FriendTech！"
 description: "SocialFi 熱度只增不減，連麻吉大哥也加入！深入了解 FriendTech 的運作模式與投資機會。"
 publishedAt: 2023-10-13
 draft: false
+tags: ["區塊鏈", "SocialFi", "投資"]
 ---
 
 ## 什麼是 FriendTech？

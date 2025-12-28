@@ -1,0 +1,70 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../components/layout/BaseLayout.astro";
+import BaseHero from "../../../components/shared/BaseHero.astro";
+import ArticleCard from "../../../components/ui/ArticleCard.astro";
+import Container from "../../../components/ui/Container.astro";
+import ContentList from "../../../components/shared/ContentList.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => {
+    return import.meta.env.PROD ? !data.draft : true;
+  });
+
+  // 收集所有唯一的 tags
+  const tags = new Set<string>();
+  posts.forEach((post) => {
+    post.data.tags?.forEach((tag) => tags.add(tag));
+  });
+
+  return [...tags].map((tag) => ({
+    params: { tag },
+    props: {
+      posts: posts
+        .filter((post) => post.data.tags?.includes(tag))
+        .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()),
+    },
+  }));
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<BaseLayout title={`標籤: ${tag}`} description={`包含「${tag}」標籤的所有文章`}>
+  <Container>
+    <BaseHero title={`#${tag}`} description={`${posts.length} 篇文章`} />
+    <div class="back-link">
+      <a href="/blog/tags">← 所有標籤</a>
+    </div>
+    <ContentList>
+      {
+        posts.map((post) => (
+          <ArticleCard
+            title={post.data.title}
+            description={post.data.description}
+            url={`/blog/${post.id}`}
+            date={post.data.publishedAt}
+            tags={post.data.tags}
+          />
+        ))
+      }
+    </ContentList>
+  </Container>
+</BaseLayout>
+
+<style>
+  .back-link {
+    margin-bottom: 2rem;
+  }
+
+  .back-link a {
+    color: var(--muted-text-color);
+    text-decoration: none;
+    font-size: var(--text-sm);
+  }
+
+  .back-link a:hover {
+    color: var(--link-color);
+  }
+</style>

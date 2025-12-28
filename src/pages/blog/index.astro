@@ -16,6 +16,11 @@ const sortedPosts = posts.sort((a, b) => b.data.publishedAt.getTime() - a.data.p
 <BaseLayout title="部落格" description="閱讀我的最新文章">
   <Container>
     <BaseHero title="部落格" description="閱讀我的最新文章" />
+    <div class="blog-nav">
+      <a href="/blog">全部文章</a>
+      <a href="/blog/tags">標籤</a>
+      <a href="/blog/archive">存檔</a>
+    </div>
     <ContentList>
       {
         sortedPosts.map((post) => (
@@ -24,9 +29,36 @@ const sortedPosts = posts.sort((a, b) => b.data.publishedAt.getTime() - a.data.p
             description={post.data.description}
             url={`/blog/${post.id}`}
             date={post.data.publishedAt}
+            tags={post.data.tags}
           />
         ))
       }
     </ContentList>
   </Container>
 </BaseLayout>
+
+<style>
+  .blog-nav {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .blog-nav a {
+    color: var(--muted-text-color);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    transition: color 0.2s;
+  }
+
+  .blog-nav a:hover {
+    color: var(--link-color);
+  }
+
+  .blog-nav a[href="/blog"] {
+    color: var(--text-color);
+    font-weight: 500;
+  }
+</style>

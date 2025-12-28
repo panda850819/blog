@@ -30,6 +30,13 @@ const formatDate = (date: Date) => {
       <time datetime={post.data.publishedAt.toISOString()}>
         {formatDate(post.data.publishedAt)}
       </time>
+      {post.data.tags && post.data.tags.length > 0 && (
+        <div class="tags">
+          {post.data.tags.map((tag) => (
+            <a href={`/blog/tags/${encodeURIComponent(tag)}`} class="tag">{tag}</a>
+          ))}
+        </div>
+      )}
     </header>
     <div class="content">
       <Content />
@@ -38,14 +45,8 @@ const formatDate = (date: Date) => {
 </BaseLayout>
 
 <style>
-  main {
-    width: 100%;
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-  }
-
   .post {
+    max-width: 700px;
     margin-top: 2rem;
   }
 
@@ -60,6 +61,27 @@ const formatDate = (date: Date) => {
   time {
     color: var(--text-muted);
     font-size: var(--text-sm);
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .tag {
+    font-size: var(--text-xs);
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.25rem 0.75rem;
+    background: var(--border-color);
+    border-radius: 1rem;
+    transition: all 0.2s;
+  }
+
+  .tag:hover {
+    color: var(--link-color);
   }
 
   .content {
@@ -124,9 +146,4 @@ const formatDate = (date: Date) => {
     margin: 0.5rem 0;
   }
 
-  @media (max-width: 640px) {
-    main {
-      padding: 1rem;
-    }
-  }
 </style>

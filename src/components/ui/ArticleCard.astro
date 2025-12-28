@@ -18,10 +18,10 @@ import { formatDate } from "../../utils/date";
   </div>
   <p class="muted-text">{description}</p>
   {
-    tags && (
+    tags && tags.length > 0 && (
       <div class="tags">
         {tags.map((tag) => (
-          <span>{tag}</span>
+          <a href={`/blog/tags/${encodeURIComponent(tag)}`} class="tag">{tag}</a>
         ))}
       </div>
     )
@@ -52,8 +52,19 @@ import { formatDate } from "../../utils/date";
     margin-top: 0.5rem;
   }
 
-  .tags span {
+  .tags .tag {
     font-size: var(--text-xs);
-    opacity: 0.5;
+    opacity: 0.6;
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.25rem;
+    background: var(--border-color);
+    transition: all 0.2s;
+  }
+
+  .tags .tag:hover {
+    opacity: 1;
+    color: var(--link-color);
   }
 </style>

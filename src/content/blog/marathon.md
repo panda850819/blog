@@ -3,6 +3,7 @@ title: "馬拉松"
 description: "週末參加 Panasonic 馬拉松，記錄完賽心得與過程。"
 publishedAt: 2025-09-14
 draft: false
+tags: ["運動", "生活", "馬拉松"]
 ---
 
 ## 週末活動
