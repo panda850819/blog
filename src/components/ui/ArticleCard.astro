@@ -40,15 +40,24 @@ import { formatDate } from "../../utils/date";
     font-size: var(--text-lg);
     text-decoration: none;
     color: var(--text-color);
+    flex: 1;
+    min-width: 0;
   }
 
   .title-row a:hover {
     color: var(--link-color);
   }
 
+  .title-row time {
+    flex-shrink: 0;
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+  }
+
   .tags {
     display: flex;
-    gap: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     margin-top: 0.5rem;
   }
 
@@ -66,5 +75,17 @@ import { formatDate } from "../../utils/date";
   .tags .tag:hover {
     opacity: 1;
     color: var(--link-color);
+  }
+
+  @media (max-width: 480px) {
+    .title-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+
+    .title-row time {
+      order: -1;
+    }
   }
 </style>

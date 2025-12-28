@@ -82,7 +82,7 @@ const { title, description, image = "/default-og-image.jpg", canonicalURL = Astr
       <div class="nav-container">
         <Navigation />
       </div>
-      <main><slot /></main>
+      <div class="content-wrapper"><slot /></div>
     </main>
     <div class="bottom-glow" transition:persist></div>
   </body>

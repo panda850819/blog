@@ -24,31 +24,22 @@ const formatDate = (date: Date) => {
 ---
 
 <BaseLayout title={note.data.title} description={note.data.description}>
-  <main>
-    <article class="note">
-      <header>
-        <div class="metadata">
-          <time datetime={note.data.publishedAt.toISOString()}>
-            {formatDate(note.data.publishedAt)}
-          </time>
-        </div>
-        <h1>{note.data.title}</h1>
-      </header>
-      <div class="content">
-        <Content />
+  <article class="note">
+    <header>
+      <div class="metadata">
+        <time datetime={note.data.publishedAt.toISOString()}>
+          {formatDate(note.data.publishedAt)}
+        </time>
       </div>
-    </article>
-  </main>
+      <h1>{note.data.title}</h1>
+    </header>
+    <div class="content">
+      <Content />
+    </div>
+  </article>
 </BaseLayout>
 
 <style>
-  main {
-    width: 100%;
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-  }
-
   .note {
     margin-top: 2rem;
   }
@@ -77,9 +68,13 @@ const formatDate = (date: Date) => {
     line-height: 1.7;
   }
 
-  @media (max-width: 640px) {
-    main {
-      padding: 1rem;
+  @media (max-width: 480px) {
+    .note {
+      margin-top: 1rem;
+    }
+
+    header {
+      margin-bottom: 1.5rem;
     }
   }
 </style>

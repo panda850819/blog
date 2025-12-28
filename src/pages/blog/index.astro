@@ -61,4 +61,10 @@ const sortedPosts = posts.sort((a, b) => b.data.publishedAt.getTime() - a.data.p
     color: var(--text-color);
     font-weight: 500;
   }
+
+  @media (max-width: 480px) {
+    .blog-nav {
+      gap: 1rem;
+    }
+  }
 </style>

@@ -101,4 +101,18 @@ const sortedTags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1]);
     color: var(--text-color);
     font-weight: 500;
   }
+
+  @media (max-width: 480px) {
+    .blog-nav {
+      gap: 1rem;
+    }
+
+    .tag-card {
+      padding: 0.375rem 0.75rem;
+    }
+
+    .tags-grid {
+      gap: 0.5rem;
+    }
+  }
 </style>
