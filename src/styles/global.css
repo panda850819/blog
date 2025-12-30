@@ -324,6 +324,7 @@ button {
 
 .muted-text {
   color: var(--text-muted);
+  font-size: var(--text-sm);
   margin-top: 0.25rem;
 }
 
