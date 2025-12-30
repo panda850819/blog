@@ -420,24 +420,31 @@ hr {
 /* Prose styling for article content */
 .prose {
   font-size: var(--text-base);
-  line-height: 1.75;
+  line-height: 1.8;
   color: var(--text-color);
+  letter-spacing: -0.01em;
 }
 
 .prose > * + * {
-  margin-top: 1.25rem;
+  margin-top: 1.5rem;
 }
 
 .prose h2 {
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  margin-top: 3.5rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
   border-bottom: 1px solid var(--border-color);
+  letter-spacing: -0.02em;
 }
 
 .prose h3 {
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
+  font-size: var(--text-xl);
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
 }
 
 .prose h2:first-child,
@@ -446,23 +453,30 @@ hr {
 }
 
 .prose p {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
   max-width: none;
 }
 
 .prose ul,
 .prose ol {
-  margin: 1.25rem 0;
-  padding-left: 1.75rem;
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
 }
 
 .prose li {
-  margin-bottom: 0.5rem;
-  padding-left: 0.25rem;
+  margin-bottom: 0.75rem;
+  padding-left: 0.5rem;
+  line-height: 1.7;
 }
 
 .prose li::marker {
   color: var(--text-muted);
+}
+
+.prose li > ul,
+.prose li > ol {
+  margin-top: 0.75rem;
+  margin-bottom: 0;
 }
 
 .prose strong {
@@ -487,11 +501,13 @@ hr {
 }
 
 .prose blockquote {
-  margin: 1.5rem 0;
-  padding: 1rem 1.5rem;
-  border-left: 3px solid var(--link-color);
-  background: var(--hover-bg);
+  margin: 2rem 0;
+  padding: 1.25rem 1.5rem;
+  border-left: 3px solid var(--border-color);
+  background: var(--bg-color-muted);
   border-radius: 0 0.5rem 0.5rem 0;
+  color: var(--text-muted);
+  font-style: italic;
 }
 
 .prose blockquote p {
@@ -499,23 +515,27 @@ hr {
 }
 
 .prose code {
-  font-size: 0.9em;
-  padding: 0.2em 0.4em;
-  background: var(--hover-bg);
+  font-size: 0.875em;
+  padding: 0.2em 0.5em;
+  background: var(--bg-color-muted);
   border-radius: 0.25rem;
+  color: var(--text-color);
 }
 
 .prose pre {
-  margin: 1.5rem 0;
-  padding: 1.25rem;
+  margin: 2rem 0;
+  padding: 1.5rem;
   border-radius: 0.5rem;
   overflow-x: auto;
+  background: var(--bg-color-muted);
+  border: 1px solid var(--border-color);
 }
 
 .prose pre code {
   font-size: var(--text-sm);
   padding: 0;
   background: none;
+  line-height: 1.6;
 }
 
 .prose hr {
