@@ -15,7 +15,7 @@ const { note } = Astro.props;
 const { Content, headings } = await render(note);
 
 const formatDate = (date: Date) => {
-  return date.toLocaleDateString("zh-TW", {
+  return date.toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
