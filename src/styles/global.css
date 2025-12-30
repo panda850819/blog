@@ -517,7 +517,7 @@ hr {
 .prose code {
   font-size: 0.875em;
   padding: 0.2em 0.5em;
-  background: var(--bg-color-muted);
+  background: rgba(0, 0, 0, 0.05);
   border-radius: 0.25rem;
   color: var(--text-color);
 }
@@ -527,8 +527,7 @@ hr {
   padding: 1.5rem;
   border-radius: 0.5rem;
   overflow-x: auto;
-  background: var(--bg-color-muted);
-  border: 1px solid var(--border-color);
+  /* Let Astro's shiki handle background */
 }
 
 .prose pre code {
