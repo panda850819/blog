@@ -8,13 +8,14 @@
   --font-primary: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "Roboto Mono", Consolas, "Courier New", monospace;
 
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 0.75rem;
-  --text-lg: 1rem;
-  --text-xl: 1.125rem;
-  --text-2xl: 1.25rem;
-  --text-3xl: 1.5rem;
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px - 標準內文 */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  --text-3xl: 1.875rem;  /* 30px */
+  --text-4xl: 2.25rem;   /* 36px */
 
   --link-animation-duration: 0.3s;
 }
@@ -171,27 +172,30 @@ h6 {
 }
 
 h1 {
-  font-size: var(--text-3xl);
+  font-size: var(--text-4xl);
   letter-spacing: -0.05em;
   font-weight: 600;
 }
 
 h2 {
-  font-size: var(--text-2xl);
+  font-size: var(--text-3xl);
   letter-spacing: -0.04em;
-  font-weight: 500;
+  font-weight: 600;
+  margin-top: 2.5rem;
 }
 
 h3 {
-  font-size: var(--text-xl);
+  font-size: var(--text-2xl);
   letter-spacing: -0.03em;
   font-weight: 500;
+  margin-top: 2rem;
 }
 
 h4 {
-  font-size: var(--text-lg);
+  font-size: var(--text-xl);
   letter-spacing: -0.03em;
   font-weight: 500;
+  margin-top: 1.5rem;
 }
 
 h5 {
@@ -412,14 +416,108 @@ hr {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-h1,
-h2,
-h3 {
-  background: linear-gradient(135deg,
-      rgba(0, 0, 0, 0.9),
-      rgba(0, 0, 0, 0.85) 50%,
-      rgba(0, 0, 0, 0.8) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* Prose styling for article content */
+.prose {
+  font-size: var(--text-base);
+  line-height: 1.75;
+  color: var(--text-color);
+}
+
+.prose > * + * {
+  margin-top: 1.25rem;
+}
+
+.prose h2 {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.prose h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose h2:first-child,
+.prose h3:first-child {
+  margin-top: 0;
+}
+
+.prose p {
+  margin-bottom: 1.25rem;
+  max-width: none;
+}
+
+.prose ul,
+.prose ol {
+  margin: 1.25rem 0;
+  padding-left: 1.75rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+  padding-left: 0.25rem;
+}
+
+.prose li::marker {
+  color: var(--text-muted);
+}
+
+.prose strong {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.prose a {
+  color: var(--link-color);
+  text-decoration: underline;
+  text-decoration-color: var(--border-color);
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.2s;
+}
+
+.prose a:hover {
+  text-decoration-color: var(--link-color);
+}
+
+.prose a::after {
+  display: none;
+}
+
+.prose blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 3px solid var(--link-color);
+  background: var(--hover-bg);
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.prose blockquote p {
+  margin-bottom: 0;
+}
+
+.prose code {
+  font-size: 0.9em;
+  padding: 0.2em 0.4em;
+  background: var(--hover-bg);
+  border-radius: 0.25rem;
+}
+
+.prose pre {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+.prose pre code {
+  font-size: var(--text-sm);
+  padding: 0;
+  background: none;
+}
+
+.prose hr {
+  margin: 2.5rem 0;
+  border-color: var(--border-color);
 }
