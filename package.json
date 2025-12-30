@@ -17,6 +17,8 @@
     "@fontsource/roboto-mono": "^5.1.1",
     "@fontsource/source-sans-pro": "^5.1.0",
     "astro": "^5.1.2",
+    "astro-og-canvas": "^0.7.2",
+    "canvaskit-wasm": "^0.40.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {

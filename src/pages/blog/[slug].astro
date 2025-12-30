@@ -29,6 +29,7 @@ const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
 <BaseLayout
   title={post.data.title}
   description={post.data.description}
+  image={`/og/blog/${post.id}.png`}
   type="article"
   publishedTime={post.data.publishedAt}
   modifiedTime={post.data.updatedAt}
