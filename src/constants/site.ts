@@ -8,7 +8,7 @@ export const SITE = {
     title: "區塊鏈 × 行銷 × 程式",
     description: "2018 接觸區塊鏈，過程中點各式各樣的技能點做過 Marketing/Operations 的一個會寫點程式的資管生",
     url: "https://pdzeng.dev",
-    defaultImage: "/default-og-image.jpg",
+    defaultImage: "/default-og-image.png",
 } as const;
 
 export const NAVIGATION: {
