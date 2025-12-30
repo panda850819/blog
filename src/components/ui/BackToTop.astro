@@ -54,10 +54,16 @@
   }
 </style>
 
-<script>
-  const backToTop = document.getElementById('back-to-top');
+<script is:inline>
+  function initBackToTop() {
+    const backToTop = document.getElementById('back-to-top');
+    if (!backToTop) return;
 
-  if (backToTop) {
+    // Check initial scroll position
+    if (window.scrollY > 300) {
+      backToTop.classList.add('visible');
+    }
+
     // Show/hide based on scroll position
     window.addEventListener('scroll', () => {
       if (window.scrollY > 300) {
@@ -75,4 +81,10 @@
       });
     });
   }
+
+  // Run on initial load
+  initBackToTop();
+
+  // Re-run after view transitions
+  document.addEventListener('astro:page-load', initBackToTop);
 </script>
