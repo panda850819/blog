@@ -66,6 +66,42 @@ body {
   overflow-x: hidden;
 }
 
+.astro-code,
+.astro-code span {
+  color: #ffffff !important;
+}
+
+/* Link Preview Card */
+.link-preview {
+  --link-preview-corners: 8px;
+  --link-preview-padding-inline: 1rem;
+  --link-preview-padding-block: 1rem;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  transition: border-color var(--transition-base);
+}
+
+.link-preview:hover {
+  border-color: var(--text-muted);
+}
+
+.link-preview img {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.link-preview__domain {
+  color: var(--text-muted);
+}
+
+.link-preview__title {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.link-preview__description {
+  color: var(--text-muted);
+}
+
 .astro-code * {
   font-size: var(--text-xs);
 }
