@@ -43,7 +43,7 @@ const { year, posts } = Astro.props;
           <ArticleCard
             title={post.data.title}
             description={post.data.description}
-            url={`/blog/${post.id}`}
+            url={`/blog/${post.data.slug || post.id}`}
             date={post.data.publishedAt}
             tags={post.data.tags}
           />

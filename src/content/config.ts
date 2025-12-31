@@ -9,6 +9,7 @@ const blog = defineCollection({
     schema: z.object({
         title: z.string(),
         description: z.string(),
+        slug: z.string().optional(),
         publishedAt: z.coerce.date(),
         draft: z.boolean().optional().default(true),
         tags: z.array(z.string()).optional(),
@@ -83,7 +84,7 @@ const notes = defineCollection({
         description: z.string(),
         publishedAt: z.coerce.date(),
         category: z.string(),
-        draft: z.boolean().optional().default(false),
+        draft: z.boolean().optional().default(true),
     })
 });
 
@@ -100,6 +101,7 @@ const bookmarks = defineCollection({
         publishedAt: z.coerce.date(),
         createdAt: z.coerce.date(),
         description: z.string().optional(),
+        draft: z.boolean().optional().default(true),
     })
 });
 

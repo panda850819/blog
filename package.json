@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@astro-community/astro-embed-link-preview": "^0.2.3",
+    "@astro-community/astro-embed-twitter": "^0.5.9",
     "@astro-community/astro-embed-youtube": "^0.5.9",
     "@astrojs/cloudflare": "^12.1.0",
     "@astrojs/mdx": "^4.3.13",

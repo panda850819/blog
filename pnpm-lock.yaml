@@ -11,6 +11,9 @@ importers:
       '@astro-community/astro-embed-link-preview':
         specifier: ^0.2.3
         version: 0.2.3
+      '@astro-community/astro-embed-twitter':
+        specifier: ^0.5.9
+        version: 0.5.9(astro@5.1.2(@types/node@22.10.5)(rollup@4.29.2)(typescript@5.7.2))
       '@astro-community/astro-embed-youtube':
         specifier: ^0.5.9
         version: 0.5.9(astro@5.1.2(@types/node@22.10.5)(rollup@4.29.2)(typescript@5.7.2))
@@ -56,6 +59,11 @@ packages:
 
   '@astro-community/astro-embed-link-preview@0.2.3':
     resolution: {integrity: sha512-TLnZOihoQhXOCybvbzE/ImqFkGgG5zSJeWIj+PytM41Q/uhU6w19LD571qmWADf0Grv/u7LtorR1PB6ijQnazQ==}
+
+  '@astro-community/astro-embed-twitter@0.5.9':
+    resolution: {integrity: sha512-bTIP/2LB3iEzlZ58L7dFyLJuWLeFDXgzZUQZKlWIfsXiKYqKIfLTQ01U10sh9UiHpm1M+4kOVPpue5LbUpJXHw==}
+    peerDependencies:
+      astro: ^2.0.0 || ^3.0.0-beta || ^4.0.0-beta || ^5.0.0-beta
 
   '@astro-community/astro-embed-utils@0.1.5':
     resolution: {integrity: sha512-0RlP7J1YEWrguWDfEDsm4uDCXk4FKn0HHakmSOSwHLg6YR8WNEN/LGMGhhsxLc/mDqO2lRh1VqfJy+yPLLkzsQ==}
@@ -2442,6 +2450,13 @@ snapshots:
   '@astro-community/astro-embed-link-preview@0.2.3':
     dependencies:
       '@astro-community/astro-embed-utils': 0.1.5
+    transitivePeerDependencies:
+      - canvas
+
+  '@astro-community/astro-embed-twitter@0.5.9(astro@5.1.2(@types/node@22.10.5)(rollup@4.29.2)(typescript@5.7.2))':
+    dependencies:
+      '@astro-community/astro-embed-utils': 0.1.5
+      astro: 5.1.2(@types/node@22.10.5)(rollup@4.29.2)(typescript@5.7.2)
     transitivePeerDependencies:
       - canvas
 

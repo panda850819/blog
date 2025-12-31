@@ -73,7 +73,7 @@ const featuredProjects = projects.filter((project: CollectionEntry<"projects">) 
           latestPosts.map((post) => (
             <article>
               <div class="title-row">
-                <a href={`/blog/${post.id}`}>{post.data.title}</a>
+                <a href={`/blog/${post.data.slug || post.id}`}>{post.data.title}</a>
                 {post.data.publishedAt && (
                   <time datetime={post.data.publishedAt.toISOString()}>{formatDate(post.data.publishedAt)}</time>
                 )}
