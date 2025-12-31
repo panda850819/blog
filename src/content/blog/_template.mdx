@@ -1,0 +1,61 @@
+---
+title: "文章標題"
+description: "文章描述，會顯示在列表和 SEO"
+publishedAt: 2024-01-01
+draft: true
+tags: ["tag1", "tag2"]
+---
+
+import { YouTube } from '@astro-community/astro-embed-youtube';
+import { LinkPreview } from '@astro-community/astro-embed-link-preview';
+
+## 正文開始
+
+這裡寫你的內容...
+
+---
+
+## MDX 功能參考
+
+### YouTube 嵌入
+
+```mdx
+<YouTube id="影片ID" />
+```
+
+<YouTube id="dQw4w9WgXcQ" />
+
+### 連結預覽卡片
+
+```mdx
+<LinkPreview id="https://example.com" />
+```
+
+<LinkPreview id="https://github.com/withastro/astro" />
+
+### 程式碼區塊
+
+```javascript
+const hello = "world";
+console.log(hello);
+```
+
+### 其他 Markdown 語法
+
+**粗體** / *斜體* / ~~刪除線~~
+
+> 引用區塊
+
+- 無序列表
+- 項目二
+
+1. 有序列表
+2. 項目二
+
+| 表格 | 標題 |
+|------|------|
+| 內容 | 內容 |
+
+---
+
+發布時將 `draft: true` 改為 `draft: false`
