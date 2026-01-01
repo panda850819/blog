@@ -4,15 +4,38 @@ import type { GetStaticPaths } from "astro";
 import BaseLayout from "../../components/layout/BaseLayout.astro";
 
 export const getStaticPaths = (async () => {
-  const posts = await getCollection("blog");
-  return posts.map((post) => ({
+  const posts = await getCollection("blog", ({ data }) => {
+    return import.meta.env.PROD ? !data.draft : true;
+  });
+
+  // Sort by date descending
+  const sortedPosts = posts.sort(
+    (a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()
+  );
+
+  return sortedPosts.map((post, index) => ({
     params: { slug: post.data.slug || post.id },
-    props: { post },
+    props: {
+      post,
+      prevPost: sortedPosts[index + 1] || null,  // older post
+      nextPost: sortedPosts[index - 1] || null,  // newer post
+      allPosts: sortedPosts,
+    },
   }));
 }) satisfies GetStaticPaths;
 
-const { post } = Astro.props;
+const { post, prevPost, nextPost, allPosts } = Astro.props;
 const { Content, headings } = await render(post);
+
+// Find related posts (same tags, excluding current post)
+const currentTags = post.data.tags || [];
+const relatedPosts = allPosts
+  .filter((p) => {
+    if (p.id === post.id) return false;
+    const postTags = p.data.tags || [];
+    return postTags.some((tag) => currentTags.includes(tag));
+  })
+  .slice(0, 3);
 
 const formatDate = (date: Date) => {
   return date.toLocaleDateString("en-US", {
@@ -70,6 +93,43 @@ const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
     <div class="content prose">
       <Content />
     </div>
+
+    <!-- Post Navigation -->
+    <nav class="post-nav">
+      <div class="nav-item prev">
+        {prevPost && (
+          <a href={`/blog/${prevPost.data.slug || prevPost.id}`}>
+            <span class="nav-label">← 上一篇</span>
+            <span class="nav-title">{prevPost.data.title}</span>
+          </a>
+        )}
+      </div>
+      <div class="nav-item next">
+        {nextPost && (
+          <a href={`/blog/${nextPost.data.slug || nextPost.id}`}>
+            <span class="nav-label">下一篇 →</span>
+            <span class="nav-title">{nextPost.data.title}</span>
+          </a>
+        )}
+      </div>
+    </nav>
+
+    <!-- Related Posts -->
+    {relatedPosts.length > 0 && (
+      <section class="related-posts">
+        <h2>相關文章</h2>
+        <ul>
+          {relatedPosts.map((relatedPost) => (
+            <li>
+              <a href={`/blog/${relatedPost.data.slug || relatedPost.id}`}>
+                <span class="related-title">{relatedPost.data.title}</span>
+                <span class="related-date">{formatDate(relatedPost.data.publishedAt)}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
   </article>
 </BaseLayout>
 
@@ -189,6 +249,122 @@ const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
     font-size: var(--text-xs);
   }
 
+  /* Post Navigation */
+  .post-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .nav-item a {
+    display: block;
+    padding: 1rem;
+    background: var(--bg-color-muted);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+
+  .nav-item a:hover {
+    border-color: var(--text-muted);
+  }
+
+  .nav-item a::after {
+    display: none;
+  }
+
+  .nav-item.prev {
+    text-align: left;
+  }
+
+  .nav-item.next {
+    text-align: right;
+  }
+
+  .nav-label {
+    display: block;
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+  }
+
+  .nav-title {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--text-color);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  /* Related Posts */
+  .related-posts {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: var(--bg-color-muted);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+  }
+
+  .related-posts h2 {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 1rem 0;
+    padding: 0;
+    border: none;
+  }
+
+  .related-posts ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .related-posts li {
+    margin: 0;
+    padding: 0;
+  }
+
+  .related-posts a {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .related-posts li:last-child a {
+    border-bottom: none;
+  }
+
+  .related-posts a:hover .related-title {
+    color: var(--link-color);
+  }
+
+  .related-posts a::after {
+    display: none;
+  }
+
+  .related-title {
+    font-size: var(--text-sm);
+    color: var(--text-color);
+    transition: color 0.2s;
+  }
+
+  .related-date {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
   @media (max-width: 480px) {
     .post {
       margin-top: 1rem;
@@ -205,6 +381,24 @@ const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
     .toc {
       padding: 1rem;
       margin-bottom: 2rem;
+    }
+
+    .post-nav {
+      grid-template-columns: 1fr;
+      margin-top: 3rem;
+    }
+
+    .nav-item.next {
+      text-align: left;
+    }
+
+    .related-posts a {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .related-date {
+      order: -1;
     }
   }
 </style>
