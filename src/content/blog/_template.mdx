@@ -8,6 +8,7 @@ tags: ["tag1", "tag2"]
 
 import { YouTube } from '@astro-community/astro-embed-youtube';
 import { LinkPreview } from '@astro-community/astro-embed-link-preview';
+import Tweet from "astro-tweet";
 
 ## 正文開始
 
@@ -32,6 +33,16 @@ import { LinkPreview } from '@astro-community/astro-embed-link-preview';
 ```
 
 <LinkPreview id="https://github.com/withastro/astro" />
+
+### Twitter/X 嵌入
+
+從推文網址提取 ID（例如 `https://x.com/user/status/1234567890` 中的 `1234567890`）
+
+```mdx
+<Tweet id="推文ID" />
+```
+
+<Tweet id="1629307668568633344" />
 
 ### 程式碼區塊
 
