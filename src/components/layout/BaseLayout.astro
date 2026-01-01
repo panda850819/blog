@@ -127,6 +127,24 @@ const absoluteCanonicalUrl = canonicalURL instanceof URL ? canonicalURL.href : `
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZV83MTE5NJ"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZV83MTE5NJ');
+
+      // Track page views on Astro view transitions
+      document.addEventListener('astro:page-load', () => {
+        gtag('event', 'page_view', {
+          page_title: document.title,
+          page_location: window.location.href,
+        });
+      });
+    </script>
+
     <ClientRouter />
     <script is:inline>
       // Always use dark theme
